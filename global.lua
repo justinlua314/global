@@ -300,7 +300,7 @@ function global.color.random(single, stream)
 end
 
 function global.color.shift(col, target, speed)
-	local finished
+	local finished = false
 	speed = speed or 0.001
 
 	if col.r then
@@ -335,8 +335,6 @@ function global.color.shift(col, target, speed)
 	global.math.nearlyEqual(col[2], target[2], speed) and
 	global.math.nearlyEqual(col[3], target[3], speed) then
 		finished = true
-	else
-		finished = false
 	end
 
 	return col, finished
