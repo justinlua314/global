@@ -70,8 +70,29 @@ function global.math.pursue(x, dx, change)
 	return x
 end
 
-function global.math.boundryCheck(x, y, dx1, dy1, dx2, dy2)
-	return (x >= dx1 and x <= dx2 and y >= dy1 and y <= dy2)
+function global.math.rectanglesOverlap(x, y, w, h, tx, ty, tw, th)
+	local result = {
+		x = false,
+		y = false
+	}
+
+	if x < tx then
+		result.x = ((x + w) >= tx)
+	else
+		result.x = ((tx + tw) >= x)
+	end
+
+	if y < ty then
+		result.y = ((y + h) >= ty)
+	else
+		result.y = ((ty + th) >= y)
+	end
+
+	return (result.x and result.y)
+end
+
+function global.math.circlesOverlap(x, y, r, tx, ty, tr)
+	return ((global.math.distance(x, y, tx, ty) - r) <= tr)
 end
 
 function global.math.distance(x, y, tx, ty)
