@@ -360,24 +360,3 @@ function global.color.shift(col, target, speed)
 
 	return col, finished
 end
-
-function global.color.rainbow(n, stream)
-	n = (n % 6)
-
-	if n == 0 then n = 1 end
-
-	local rainbow = {
-		{1, 0.2, 0.2, 1},
-		{1, 0.6, 0.2, 1},
-		{1, 1, 0.2, 1},
-		{0.2, 1, 0.2, 1},
-		{0.2, 0.6, 1, 1},
-		{0.6, 0.2, 1, 1}
-	}
-
-	if stream then
-		return rainbow[n][1], rainbow[n][2], rainbow[n][3], 1
-	else
-		return rainbow[n]
-	end
-end
