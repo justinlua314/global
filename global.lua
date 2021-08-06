@@ -209,14 +209,15 @@ function global.math.findNearest(point, tab, amount)
 	end
 end
 
-function global.math.equalPolygon(x, y, radius, count)
+function global.math.equalPolygon(x, y, radius, count, rotation)
+	rotation = rotation or 0
 	local points = {}
 
 	for i = 1,count do
 		local tx, ty = global.math.plotUnitCirclePoint(
 			x, y,
 			radius,
-			(((math.pi * 2) * (i / count)) + 0.52)
+			((((math.pi * 2) * (i / count)) + 0.52) + rotation)
 		)
 		table.insert(points, tx)
 		table.insert(points, ty)
