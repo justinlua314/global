@@ -209,6 +209,22 @@ function global.math.findNearest(point, tab, amount)
 	end
 end
 
+function global.math.equalPolygon(x, y, radius, count)
+	local points = {}
+
+	for i = 1,count do
+		local tx, ty = global.math.plotUnitCirclePoint(
+			x, y,
+			radius,
+			(((math.pi * 2) * (i / count)) + 0.52)
+		)
+		table.insert(points, tx)
+		table.insert(points, ty)
+	end
+
+	return points
+end
+
 -- Useful for plotting points around a center
 function global.math.plotUnitCirclePoint(cx, cy, radius, angle)
 	local x, y
