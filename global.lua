@@ -63,7 +63,13 @@ end
 function global.math.pursue(x, dx, change)
 	local complete = false
 	if x == dx then return x end
-	if x > dx then x = (x - change) else x = (x + change) end
+	if x > dx then
+		x = (x - change)
+		if (x - change) < dx then complete = true end
+	else
+		x = (x + change)
+		if (x + change) > dx then complete = true end
+	end
 
 	if x > (dx - global.math.pursueRoundValue) and x < (dx + global.math.pursueRoundValue) then
 		x = dx
