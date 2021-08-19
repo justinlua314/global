@@ -24,6 +24,7 @@ function global.load()
 	local w, h = love.graphics.getDimensions()
 	global.screen.w = w
 	global.screen.h = h
+	global.screen.cx, global.screen.cy = global.screen.center()
 end
 
 
