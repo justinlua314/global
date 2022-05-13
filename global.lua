@@ -5,6 +5,7 @@ global = {
         h = 0
     },
 
+    math = {},
     string = {},
     table = {},
 
