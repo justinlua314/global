@@ -57,8 +57,9 @@ function global.math.cossin(x, y, dx, dy)
 end
 
 function global.math.pursue(x, dx, change)
+    if x == dx then return x, true end
+
     local complete = false
-    if x == dx then return x, complete end
     if x > dx then
         x = (x - change)
         if (x - change) < dx then complete = true end
