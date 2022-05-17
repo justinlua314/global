@@ -102,6 +102,15 @@ function global.math.circlesOverlap(x, y, r, tx, ty, tr)
     return ((global.math.distance(x, y, tx, ty) - r) <= tr)
 end
 
+function global.math.circleOverlapsRectangle(x, y, r, tx, ty, tw, th)
+    if global.math.distance(x, y, tx, ty) <= r then return true end
+    if global.math.distance(x, y, (tx + h), ty) <= r then return true end
+    if global.math.distance(x, y, tx, (ty + th)) <= r then return true end
+    if global.math.distance(x, y, (tx + w), (ty + th)) <= r then return true end
+
+    return false
+end
+
 function global.math.distance(x, y, tx, ty)
     local dx = (x - tx)
     local dy = (y - ty)
