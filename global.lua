@@ -77,6 +77,10 @@ function global.math.pursue(x, dx, change)
     return x, complete
 end
 
+function global.math.pointInRectangle(x, y, tx, ty, tw, th)
+    return x >= tx and x <= (tx + tw) and y >= ty and y <= (ty + th)
+end
+
 function global.math.rectanglesOverlap(x, y, w, h, tx, ty, tw, th)
     local result = {
         x = false,
@@ -103,10 +107,11 @@ function global.math.circlesOverlap(x, y, r, tx, ty, tr)
 end
 
 function global.math.circleOverlapsRectangle(x, y, r, tx, ty, tw, th)
+    if global.math.pointInRectangle(x,y,(tx-r),(ty-r),(tw+(r*2)),(th+(r*2))) then return true end
     if global.math.distance(x, y, tx, ty) <= r then return true end
-    if global.math.distance(x, y, (tx + h), ty) <= r then return true end
+    if global.math.distance(x, y, (tx + th), ty) <= r then return true end
     if global.math.distance(x, y, tx, (ty + th)) <= r then return true end
-    if global.math.distance(x, y, (tx + w), (ty + th)) <= r then return true end
+    if global.math.distance(x, y, (tx + tw), (ty + th)) <= r then return true end
 
     return false
 end
