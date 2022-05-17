@@ -82,24 +82,12 @@ function global.math.pointInRectangle(x, y, tx, ty, tw, th)
 end
 
 function global.math.rectanglesOverlap(x, y, w, h, tx, ty, tw, th)
-    local result = {
-        x = false,
-        y = false
-    }
+    if global.math.pointInRectangle(x, y, tx, ty, tw, th) then return true end
+    if global.math.pointInRectangle((x + w), y, tx, ty, tw, th) then return true end
+    if global.math.pointInRectangle(x, (y + h), tx, ty, tw, th) then return true end
+    if global.math.pointInRectangle((x + w), (y + h), tx, ty, tw, th) then return true end
 
-    if x < tx then
-        result.x = ((x + w) >= tx)
-    else
-        result.x = ((tx + tw) >= x)
-    end
-
-    if y < ty then
-        result.y = ((y + h) >= ty)
-    else
-        result.y = ((ty + th) >= y)
-    end
-
-    return (result.x and result.y)
+    return false
 end
 
 function global.math.circlesOverlap(x, y, r, tx, ty, tr)
