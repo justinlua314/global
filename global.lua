@@ -107,13 +107,7 @@ function global.math.circlesOverlap(x, y, r, tx, ty, tr)
 end
 
 function global.math.circleOverlapsRectangle(x, y, r, tx, ty, tw, th)
-    if global.math.pointInRectangle(x,y,(tx-r),(ty-r),(tw+(r*2)),(th+(r*2))) then return true end
-    if global.math.distance(x, y, tx, ty) <= r then return true end
-    if global.math.distance(x, y, (tx + th), ty) <= r then return true end
-    if global.math.distance(x, y, tx, (ty + th)) <= r then return true end
-    if global.math.distance(x, y, (tx + tw), (ty + th)) <= r then return true end
-
-    return false
+    return global.math.pointInRectangle(x, y, (tx - r), (ty - r), (tw + (r*2)), (th + (r*2)))
 end
 
 function global.math.distance(x, y, tx, ty)
