@@ -237,11 +237,7 @@ function global.math.plotUnitCirclePoint(cx, cy, radius, angle)
 end
 
 function global.math.nearlyEqual(x, y, range)
-    if (x >= y and (x - y) <= range) or (x < y and (y - x) <= range) then
-        return true
-    end
-
-    return false
+    return ((x >= y and (x - y) <= range) or (x < y and (y - x) <= range))
 end
 
 
