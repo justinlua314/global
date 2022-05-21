@@ -99,9 +99,7 @@ function global.math.circleOverlapsRectangle(x, y, r, tx, ty, tw, th)
 end
 
 function global.math.distance(x, y, tx, ty)
-    local dx = (x - tx)
-    local dy = (y - ty)
-    return math.floor(math.sqrt((dx * dx) + (dy * dy)))
+    return math.sqrt(((tx - x) ^ 2) + ((ty - y) ^ 2))
 end
 
 function global.math.intersect(s1, e1, s2, e2)
