@@ -238,6 +238,11 @@ function global.math.nearlyEqual(x, y, range)
     return ((x >= y and (x - y) <= range) or (x < y and (y - x) <= range))
 end
 
+function global.math.graphicsRatio(value, min, max, graphicsWidth)
+    local ratio = ((value - min) / (max - min))
+    return (graphicsWidth * ratio)
+end
+
 
 
 -- String =============================================================================
