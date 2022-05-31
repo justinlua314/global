@@ -61,7 +61,7 @@ function global.math.clamp(var, lowerLimit, upperLimit)
     return var
 end
 
-function global.ffi.C.cossin(x, y, dx, dy)
+function global.math.cossin(x, y, dx, dy)
     local angle = ffi.C.atan2((dy - y), (dx - x))
     return ffi.C.cos(angle), ffi.C.sin(angle)
 end
