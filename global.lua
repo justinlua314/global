@@ -1,3 +1,12 @@
+local ffi = require("ffi")
+
+ffi.cdef[[
+double atan2(double y, double x);
+double cos(double x);
+double sin(double y);
+double sqrt(double x);
+]]
+
 global = {
     devMode = true,
     screen = {
@@ -52,9 +61,9 @@ function global.math.clamp(var, lowerLimit, upperLimit)
     return var
 end
 
-function global.math.cossin(x, y, dx, dy)
-    local angle = math.atan2((dy - y), (dx - x))
-    return math.cos(angle), math.sin(angle)
+function global.ffi.C.cossin(x, y, dx, dy)
+    local angle = ffi.C.atan2((dy - y), (dx - x))
+    return ffi.C.cos(angle), ffi.C.sin(angle)
 end
 
 function global.math.pursue(x, dx, change)
@@ -99,7 +108,7 @@ function global.math.circleOverlapsRectangle(x, y, r, tx, ty, tw, th)
 end
 
 function global.math.distance(x, y, tx, ty)
-    return math.sqrt(((tx - x) ^ 2) + ((ty - y) ^ 2))
+    return ffi.C.sqrt(((tx - x) ^ 2) + ((ty - y) ^ 2))
 end
 
 function global.math.intersect(s1, e1, s2, e2)
@@ -180,7 +189,7 @@ function global.math.findNearest(point, tab, amount)
     local leaders = {}
 
     for i = 1,amount do
-        local best = math.huge
+        local best = distances[1][1]
         local exit
 
         for count,dist in pairs(distances) do
@@ -229,8 +238,8 @@ end
 -- Useful for plotting points around a center
 function global.math.plotUnitCirclePoint(cx, cy, radius, angle)
     local x, y
-    x = (radius * math.cos(angle) + cx)
-    y = (radius * math.sin(angle) + cy)
+    x = (radius * ffi.C.cos(angle) + cx)
+    y = (radius * ffi.C.sin(angle) + cy)
     return x, y
 end
 
@@ -331,15 +340,16 @@ end
 -- Color ==============================================================================
 
 function global.color.random(single, stream)
-    if single then return (love.math.random(100) / 100) end
+    local rand = love.math.random
+    if single then return (rand(100) / 100) end
 
     if stream then
-        return (love.math.random(100) / 100), (love.math.random(100) / 100), (love.math.random(100) / 100), 1
+        return (rand(100) / 100), (rand(100) / 100), (rand(100) / 100), 1
     else
         local col = {
-            (love.math.random(100) / 100),
-            (love.math.random(100) / 100),
-            (love.math.random(100) / 100),
+            (rand(100) / 100),
+            (rand(100) / 100),
+            (rand(100) / 100),
             1
         }
 
